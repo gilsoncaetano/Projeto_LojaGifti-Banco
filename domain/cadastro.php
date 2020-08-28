@@ -27,6 +27,23 @@ class Cadastro{
 
     public function cadastro(){
 
+
+        // $endereco = "SELECT * FROM endereco order by idendereco desc limit 0,1;";
+        // $stmt = $this->conexao->prepare($endereco);
+        // $rs = $stmt->execute();
+    
+        // while($linha = $rs->fetch(PDO::FETCH_ASSOC)){
+        //     $this->idendereco=$linha["idendereco"];
+        // }
+    
+    
+        // $usuario = "SELECT * FROM usuario order by idusuario desc limit 0,1;";
+        // $stmt = $this->conexao->prepare($usuario);
+        // $rs = $stmt->execute();
+    
+        // while($linha = $rs->fetch(PDO::FETCH_ASSOC)){
+           
+
     $query = "insert into usuario set nomeusuario=:n, senha=:s, foto=:f";
     
     $stmtu = $this->conexao->prepare($query);
@@ -62,6 +79,7 @@ class Cadastro{
     $stmtc->execute();
 
     $this->idcontato=$this->conexao->lastInsertId();
+  
 
     //======================== cadastro do endereço ===================
 
@@ -101,6 +119,8 @@ class Cadastro{
     $stmt->bindParam(":iu",$this->idusuario);
 
     if($stmt->execute()){
+        
+        
         return true;
     }
     else{

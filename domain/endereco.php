@@ -21,7 +21,7 @@ public function listar(){
 
     $stmt = $this->conexao->prepare($query);
 
-    $stmt->execute();
+    $stmte->execute();
 
     return $stmt;
 }
@@ -29,7 +29,8 @@ public function listar(){
 public function cadastro(){
     $query = "insert into endereco set tipo=:t, logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:ce";
 
-    $stmt = $this->conexao->prepare($query);
+
+    $stmte = $this->conexao->prepare($query);
 
     //Encriptografar a senha com o uso de md5
     $this->senha = md5($this->senha);
@@ -37,14 +38,14 @@ public function cadastro(){
     /*Vamos vincular os dados que vem do app ou navegador com os campos de
     banco de dados
     */
-    $stmt->bindParam(":t",$this->tipo);
-    $stmt->bindParam(":l",$this->logradouro);
-    $stmt->bindParam(":n",$this->numero);
-    $stmt->bindParam(":c",$this->complemento);
-    $stmt->bindParam(":b",$this->bairro);
-    $stmt->bindParam(":ce",$this->cep);
+    $stmte->bindParam(":t",$this->tipo);
+    $stmte->bindParam(":l",$this->logradouro);
+    $stmte->bindParam(":n",$this->numero);
+    $stmte->bindParam(":c",$this->complemento);
+    $stmte->bindParam(":b",$this->bairro);
+    $stmte->bindParam(":ce",$this->cep);
 
-    if($stmt->execute()){
+    if($stmte->execute()){
         return true;
 
     }
@@ -56,23 +57,23 @@ public function cadastro(){
 public function alterarEndereco(){
     $query = "update endereco set  tipo=:t, logradouro=:l, numero=:n, complemento=:c, bairro=:b, cep=:ce where idendereco=:id";
 
-    $stmt = $this->conexao->prepare($query);
+    $stmte = $this->conexao->prepare($query);
 
   
     /*Vamos vincular os dados que vem do app ou navegador com os campos de
     banco de dados
     */
    
-    $stmt->bindParam(":t",$this->tipo);
-    $stmt->bindParam(":l",$this->logradouro);
-    $stmt->bindParam(":n",$this->numero);
-    $stmt->bindParam(":c",$this->complemento);
-    $stmt->bindParam(":b",$this->bairro);
-    $stmt->bindParam(":ce",$this->cep);
-    $stmt->bindParam(":id",$this->idendereco);
+    $stmte->bindParam(":t",$this->tipo);
+    $stmte->bindParam(":l",$this->logradouro);
+    $stmte->bindParam(":n",$this->numero);
+    $stmte->bindParam(":c",$this->complemento);
+    $stmte->bindParam(":b",$this->bairro);
+    $stmte->bindParam(":ce",$this->cep);
+    $stmte->bindParam(":id",$this->idendereco);
     
 
-    if($stmt->execute()){
+    if($stmte->execute()){
         return true;
     }
     else{
@@ -84,16 +85,16 @@ public function alterarEndereco(){
 public function apagarEndereco(){
     $query = "delete from endereco where idendereco=:id";
 
-    $stmt = $this->conexao->prepare($query);
+    $stmte = $this->conexao->prepare($query);
 
     
     /*Vamos vincular os dados que veem do app ou navegador com os campos de
     banco de dados
     */
    
-    $stmt->bindParam(":id",$this->idendereco);
+    $stmte->bindParam(":id",$this->idendereco);
 
-    if($stmt->execute()){
+    if($stmte->execute()){
         return true;
     }
     else{

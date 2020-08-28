@@ -30,11 +30,11 @@ O cliente irá enviar os dado no formato Json. Porém
 $data = json_decode(file_get_contents("php://input"));
 
 #Verificar se os dados vindos do usuário estão preenchidos
-if(!empty($data->nomeusuario) && !empty($data->senha)){
+if(!empty($data->nomecliente) && !empty($data->cpf)&& !empty($data->sexo)&& !empty($data->telefone)&& !empty($data->email)){
 
     $cadastro->nomecliente = $data->nomecliente;
     $cadastro->cpf = $data->cpf;
-    $cadastro->sexo = $data->sexo;
+    $cadastro->sexo = $data->sexo;   
     $cadastro->telefone = $data->telefone;
     $cadastro->email = $data->email;
     $cadastro->tipo = $data->tipo;

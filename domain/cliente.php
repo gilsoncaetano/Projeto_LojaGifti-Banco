@@ -2,6 +2,9 @@
 
 class Cliente{
 public $idcliente;
+public $telefone;
+public $email;
+
 public $nomecliente;
 public $cpf;
 public $sexo;
@@ -33,26 +36,69 @@ public $idusuario;
     }
 
     public function cadastro(){
-        $query = "insert into cliente set nomecliente=:n,cpf=:c,sexo=:s,idcontato=:ic,idendereco=:ie,idusuario=:iu";
 
-        $stmt = $this->conexao->prepare($query);
+    // $contato = "SELECT * FROM contato order by idcontato desc limit 0,1;";
+    // $stmt = $this->conexao->prepare($contato);
+    // $rs = $stmt->execute();
 
-        /*Vamos vincular os dados que veem do app ou navegador com os campos de
-        banco de dados
-        */
-
-$stmt->bindParam(":n",$this->nomecliente);
-$stmt->bindParam(":c",$this->cpf);
-$stmt->bindParam(":s",$this->sexo);
-$stmt->bindParam(":ic",$this->idcontato);
-$stmt->bindParam(":ie",$this->idendereco);
-$stmt->bindParam(":iu",$this->idusuario);
+    // while($linha = $rs->fetch(PDO::FETCH_ASSOC)){
+    //     $this->idcontato=$linha["idcontato"];
+    // }
 
 
+    $endereco = "SELECT * FROM endereco order by idendereco desc limit 0,1;";
+    $stmt = $this->conexao->prepare($endereco);
+    $rs = $stmt->execute();
+
+    while($linha = $rs->fetch(PDO::FETCH_ASSOC)){
+        $this->idendereco=$linha["idendereco"];
+    }
 
 
-        if($stmt->execute()){
-            return true;
+    $usuario = "SELECT * FROM usuario order by idusuario desc limit 0,1;";
+    $stmt = $this->conexao->prepare($usuario);
+    $rs = $stmt->execute();
+
+    while($linha = $rs->fetch(PDO::FETCH_ASSOC)){
+        $this->idusuario=$linha["idusuario"];
+    }
+
+//======================== do contato ==========================
+
+    $query = "insert into contato set email=:e, telefone=:t";
+
+    $stmtc = $this->conexao->prepare($query);
+
+    /*Vamos vincular os dados que vem do app ou navegador com os campos de
+     banco de dados
+     */
+    $stmtc->bindParam(":e",$this->email);
+    $stmtc->bindParam(":t",$this->telefone);
+
+    $stmtc->execute();
+
+    $this->idcontato=$this->conexao->lastInsertId();
+    
+ //======================== Dados do cliente ==========================
+
+
+    $query = "insert into cliente set nomecliente=:n,cpf=:c,sexo=:s,idcontato=:ic,idendereco=:ie,idusuario=:iu";
+
+    $stmt = $this->conexao->prepare($query);
+
+    /*Vamos vincular os dados que veem do app ou navegador com os campos de
+    banco de dados
+    */
+
+    $stmt->bindParam(":n",$this->nomecliente);
+    $stmt->bindParam(":c",$this->cpf);
+    $stmt->bindParam(":s",$this->sexo);
+    $stmt->bindParam(":ic",$this->idcontato);
+    $stmt->bindParam(":ie",$this->idendereco);
+    $stmt->bindParam(":iu",$this->idusuario);
+    
+     if($stmt->execute()){
+        return true;
         }
         else{
             return false;
@@ -61,30 +107,30 @@ $stmt->bindParam(":iu",$this->idusuario);
     }
 
     public function atualizarcliente(){
-        $query = "update cliente set nomecliente=:n,cpf=:c,sexo=:s,idcontato=:ic,idendereco=:ie,idusuario=:iu where idcliente=:idcli";
+    $query = "update cliente set nomecliente=:n,cpf=:c,sexo=:s,idcontato=:ic,idendereco=:ie,idusuario=:iu where idcliente=:idcli";
 
-        $stmt = $this->conexao->prepare($query);
+    $stmt = $this->conexao->prepare($query);
 
-        /*Vamos vincular os dados que veem do app ou navegador com os campos de
-        banco de dados
-        */
+    /*Vamos vincular os dados que veem do app ou navegador com os campos de
+    banco de dados
+    */
 
-$stmt->bindParam(":n",$this->nomecliente);
-$stmt->bindParam(":c",$this->cpf);
-$stmt->bindParam(":s",$this->sexo);
-$stmt->bindParam(":ic",$this->idcontato);
-$stmt->bindParam(":ie",$this->idendereco);
-$stmt->bindParam(":iu",$this->idusuario);
-$stmt->bindParam(":idcli",$this->idcliente);
+    $stmt->bindParam(":n",$this->nomecliente);
+    $stmt->bindParam(":c",$this->cpf);
+    $stmt->bindParam(":s",$this->sexo);
+    $stmt->bindParam(":ic",$this->idcontato);
+    $stmt->bindParam(":ie",$this->idendereco);
+    $stmt->bindParam(":iu",$this->idusuario);
+    $stmt->bindParam(":idcli",$this->idcliente);
 
 
 
-        if($stmt->execute()){
-            return true;
-        }
-        else{
-            return false;
-        }
+    if($stmt->execute()){
+    return true;
+    }
+    else{
+    return false;
+    }
     }
 
 
