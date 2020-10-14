@@ -50,6 +50,10 @@ if(!empty($data->idcliente)){
         echo json_encode(array("mensagem"=>"Não foi possível cadastrar"));
     }
 }
+else{
+    header("HTTP/1.0 400");
+    echo json_encode(array("mensagem"=>"Você precisa preencher todos os campos"));
+}
 
 
 ?>
