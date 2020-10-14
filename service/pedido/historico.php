@@ -87,6 +87,7 @@ ao final
         */
         extract($linha);
         $array_item = array(
+            "idcliente"=> $idcliente,
             "idpedido"=> $idpedido,
             "datapedido"=> $datapedido,
             "nomeproduto"=> $nomeproduto,

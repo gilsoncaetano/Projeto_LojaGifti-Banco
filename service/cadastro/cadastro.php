@@ -34,6 +34,7 @@ if(!empty($data->nomecliente) && !empty($data->cpf)&& !empty($data->sexo)&& !emp
 
     $cadastro->nomecliente = $data->nomecliente;
     $cadastro->cpf = $data->cpf;
+    
     $cadastro->sexo = $data->sexo;   
     $cadastro->telefone = $data->telefone;
     $cadastro->email = $data->email;

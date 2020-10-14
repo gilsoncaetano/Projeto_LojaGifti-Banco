@@ -1,9 +1,7 @@
 <?php
 
 
-class HistoricoPedido{
-
-    
+class HistoricoPedido{ 
     public $idcliente;
     public $idpedido;
     public $datapedido;
@@ -31,12 +29,10 @@ public function listar(){
     pg.tipo,
     pg.valor,
     pg.parcelas,
-    pg.valorparcela
-    
+    pg.valorparcela  
     from pedido pe inner join itenspedido ip on pe.idpedido = ip.idpedido
     inner join produto pr on ip.idproduto=pr.idproduto
     inner join pagamento pg on pg.idpedido = pe.idpedido
-
     where pe.idcliente=:n";
 
     $stmt = $this->conexao->prepare($query);
