@@ -85,7 +85,7 @@ ao final
             "tipo"=>$tipo,
             "valor"=>$valor,
             "parcelas"=>$parcelas,
-            "valorparcelas"=>$valorparcelas,
+            "valorparcela"=>$valorparcela,
 
         );
 

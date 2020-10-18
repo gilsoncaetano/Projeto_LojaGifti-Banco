@@ -32,14 +32,12 @@ $data = json_decode(file_get_contents("php://input"));
 #Verificar se os dados vindos do produto estão preenchidos
 if(!empty($data->idcliente)){
 
-    $pagamento-> $idpagamento=$data->idpagamento;
-    $pagamento-> $idpedido=$data->idpedido;
-    $pagamento-> $tipo=$data->tipo;
-    $pagamento-> $descricao=$data->descricao;
-    $pagamento-> $valor=$data->valor;
-    $pagamento-> $parcelas=$data->parcelas;
-    $pagamento-> $valorparcela=$data->valorparcela;
-    $pagamento-> $idcliente=$data->idcliente;
+    $pagamento->tipo=$data->tipo;
+    $pagamento->descricao=$data->descricao;
+    $pagamento->valor=$data->valor;
+    $pagamento->parcelas=$data->parcelas;
+    $pagamento->valorparcela=$data->valorparcela;
+    $pagamento->idcliente=$data->idcliente;
 
     if($pagamento->cadastro()){
         header("HTTP/1.0 201");

@@ -91,6 +91,7 @@ ao final
             "idusuario"=>$idusuario,
             "nomeusuario"=>$nomeusuario,
             "foto"=>$foto,
+            "idcliente"=>$idcliente,
             "nomecliente"=> $nomecliente,
              "cpf"=> $cpf,
              "sexo"=> $sexo,

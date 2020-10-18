@@ -47,11 +47,7 @@ public $idcliente;
      
          $stmtPedido->execute();
      
-         $this->idpedido = $this->conexao->lastInsertId();      
-     
-
-
-
+         $this->idpedido = $this->conexao->lastInsertId();
 
         $query = "insert into pagamento set idpedido=:ip, tipo=:t,descricao=:d,valor=:v,parcelas=:p,valorparcela=:vp";
 
@@ -62,12 +58,12 @@ public $idcliente;
         */        
 
 
-$stmt->bindParam(":ip",$this->idpedido);
-$stmt->bindParam(":t",$this->tipo);
-$stmt->bindParam(":d",$this->descricao);
-$stmt->bindParam(":v",$this->valor);
-$stmt->bindParam(":p",$this->parcelas);
-$stmt->bindParam(":vp",$this->valorparcela);
+        $stmt->bindParam(":ip",$this->idpedido);
+        $stmt->bindParam(":t",$this->tipo);
+        $stmt->bindParam(":d",$this->descricao);
+        $stmt->bindParam(":v",$this->valor);
+        $stmt->bindParam(":p",$this->parcelas);
+        $stmt->bindParam(":vp",$this->valorparcela);
 
 
 
